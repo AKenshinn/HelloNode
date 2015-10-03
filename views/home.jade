@@ -1,0 +1,40 @@
+extends layout
+
+block title
+  title= title
+
+block content
+  div.row
+    div.col-sm-12
+      div.page-header
+        h1
+          span.fa.fa-list-alt  Smart Table
+
+  div.row
+    div.col-sm-12(ng-app='myApp', ng-controller='safeCtrl')
+      button.btn.btn-sm.btn-success(type='button', ng-click='addRandomItem(row)')
+        span.fa.fa-plus Add Random Item
+      table.table.table-striped(st-table='displayedCollection', st-safe-src='rowCollection')
+        thead
+          tr
+            th(st-sort='firstName') First Name
+            th(st-sort='lastName') Last Name
+            th(st-sort='birthDate') Birth Date
+            th(st-sort='balance') Balance
+          tr
+            th(colspan='5')
+              input.form-control(st-search='', placeholder='global search ...', type='text')
+        tbody
+          tr(ng-repeat='row in displayedCollection')
+            td {{ row.firstName }}
+            td {{ row.lastName }}
+            td {{ row.birthDate }}
+            td {{ row.balance }}
+            td 
+              button.btn.btn-sm.btn-danger(type='button', ng-click='removeItem(row)')
+                  span.fa.fa-trash-o
+      //- div(ng-app='myApp', ng-controller='customersCtrl')
+      //-   ul
+      //-     li(ng-repeat='x in names') {{ x.Name + ', ' + x.Country }}
+  script(src='/javascripts/smart-table.min.js')
+  script(src='/javascripts/customer.js')

@@ -1,0 +1,27 @@
+extends layout
+
+block title
+  title= title
+
+block content
+  div.col-sm-6.col-sm-offset-3
+    h1
+      span.fa.fa-sign-in  Login
+      if message.length > 0
+        div.alert.alert-danger= message
+    form(action='/login', method='post')
+      div.form-group
+        label UserName: 
+        input.form-control(type='text', name='username', autofocus)
+      div.form-group
+        label Password: 
+        input.form-control(type='password', name='password')
+      div.form-group
+        label Remember Me: 
+        input.form-control(type='checkbox', name='remember', value='yes')
+      button.btn.btn-lg.btn-dafault.btn-warning(type='submit') Login
+    hr
+    p Need an account?
+      a(href='/signup') Signup
+    p Or go 
+      a(href='/home') home.
